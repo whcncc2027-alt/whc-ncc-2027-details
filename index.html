@@ -363,7 +363,6 @@ tbody tr:last-child td{border-bottom:none;}
         <div class="info-field"><label>Full Name</label><input id="df_name" placeholder="Full name"/></div>
         <div class="info-field"><label>Date of Birth</label><input id="df_dob" type="date"/></div>
         <div class="info-field"><label>Gender</label><select id="df_gender"><option value="">—</option><option>Male</option><option>Female</option><option>Other</option></select></div>
-        <div class="info-field"><label>Blood Group</label><select id="df_blood"><option value="">—</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
         <div class="info-field"><label>Phone Number</label><input id="df_phone" placeholder="Mobile number"/></div>
         <div class="info-field"><label>Emergency Contact</label><input id="df_emergency" placeholder="Parent/Guardian"/></div>
       </div>
@@ -394,10 +393,10 @@ tbody tr:last-child td{border-bottom:none;}
     <div class="info-section">
       <div class="info-section-title">🎓 Academic Details</div>
       <div class="info-grid">
-        <div class="info-field"><label>Department</label><input id="df_dept" placeholder="e.g. Grade - 09A"/></div>
-        <div class="info-field"><label>Year of Study</label><select id="df_year"><option value="">—</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option></select></div>
-        <div class="info-field"><label>College Roll No</label><input id="df_rollNo" placeholder="Roll number"/></div>
-        <div class="info-field"><label>Email</label><input id="df_email" type="email" placeholder="Email address"/></div>
+        <div class="info-field"><label>Father Name</label><input id="df_email" placeholder="Father's name"/></div>
+        <div class="info-field"><label>Grade</label><select id="df_dept"><option value="">—</option><option>Grade - 9A</option><option>Grade - 9B</option><option>Grade - 8A</option><option>Grade - 8B</option><option>Grade - 10A</option><option>Grade - 10B</option></select></div>
+        <div class="info-field"><label>Last Year (2026) Participate</label><select id="df_year"><option value="">—</option><option>Yes</option><option>No</option></select></div>
+        <div class="info-field"><label>Index No</label><input id="df_rollNo" placeholder="Index number"/></div>
       </div>
     </div>
 
@@ -703,7 +702,7 @@ function renderCadetSelf(sid){
     <div class="self-body">
       <div class="self-section"><div class="self-section-title">📊 My Attendance</div>${buildAttendanceSection(sid)}</div>
       <div class="self-section"><div class="self-section-title">🪪 Personal Information</div><div class="self-fields">
-        ${sf("Date of Birth",s.dob||"—")}${sf("Gender",s.gender||"—")}${sf("Blood Group",s.blood||"—")}
+        ${sf("Date of Birth",s.dob||"—")}${sf("Gender",s.gender||"—")}
         ${sf("Phone",s.phone||"—")}${sf("Emergency Contact",s.emergency||"—")}${sf("Address",s.address||"—")}
       </div></div>
       <div class="self-section"><div class="self-section-title">🎖️ NCC Details</div><div class="self-fields">
@@ -714,7 +713,7 @@ function renderCadetSelf(sid){
         ${sf("P.I. No",s.piNo||"—")}${sf("B.C. No",s.bcNo||"—")}${sf("NIC No",s.nic||"—")}
       </div></div>
       <div class="self-section"><div class="self-section-title">🎓 Academic Details</div><div class="self-fields">
-        ${sf("Department",s.dept||"—")}${sf("Year of Study",s.year||"—")}${sf("College Roll No",s.rollNo||"—")}${sf("Email",s.email||"—")}
+        ${sf("Father Name",s.email||"—")}${sf("Grade",s.dept||"—")}${sf("Last Year (2026) Participate",s.year||"—")}${sf("Index No",s.rollNo||"—")}
       </div></div>
       ${s.awards?`<div class="self-section"><div class="self-section-title">🏅 Awards</div><div style="background:var(--glass);border:1px solid var(--glassborder);border-radius:10px;padding:12px;font-size:.88rem;">${s.awards}</div></div>`:""}
       <div class="self-section"><div class="self-section-title">📄 My Documents</div>
@@ -745,7 +744,7 @@ window.openDrawer=function(sid){
   const li=document.getElementById("heroLoginInfo");
   if(s.loginUser){li.innerHTML=`🔑 Login: <b>${s.loginUser}</b>`;li.style.display="block";}else{li.style.display="none";}
   const set=(id,val)=>{const e=document.getElementById(id);if(e)e.value=val||"";};
-  set("df_name",s.name);set("df_dob",s.dob);set("df_gender",s.gender);set("df_blood",s.blood);
+  set("df_name",s.name);set("df_dob",s.dob);set("df_gender",s.gender);
   set("df_phone",s.phone);set("df_emergency",s.emergency);set("df_address",s.address);
   set("df_regNo",s.regNo);set("df_piNo",s.piNo);set("df_bcNo",s.bcNo);set("df_nic",s.nic);
   set("df_rank",s.rank||"CDT");set("df_wing",s.wing||"Army");
@@ -768,7 +767,7 @@ window.closeDrawer=function(){drawerSid=null;document.getElementById("drawerOver
 window.saveDrawer=function(){
   const s=getStu(drawerSid);if(!s)return;
   const get=id=>{const e=document.getElementById(id);return e?e.value.trim():"";};
-  s.name=get("df_name")||s.name;s.dob=get("df_dob");s.gender=get("df_gender");s.blood=get("df_blood");
+  s.name=get("df_name")||s.name;s.dob=get("df_dob");s.gender=get("df_gender");
   s.phone=get("df_phone");s.emergency=get("df_emergency");s.address=get("df_address");
   s.regNo=get("df_regNo");s.piNo=get("df_piNo");s.bcNo=get("df_bcNo");s.nic=get("df_nic");
   s.rank=get("df_rank");s.wing=get("df_wing");s.yearJoined=get("df_yearJoined");
